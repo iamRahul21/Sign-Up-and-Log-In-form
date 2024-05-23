@@ -12,7 +12,7 @@ function setRoleAndShowForm(role) {
   document.getElementById("signupFormContainer").style.display = "block";
 }
 
-document.getElementById("signupForm").addEventListener("submit", function (event) {
+document.getElementById("signupForm").addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const username = document.getElementById("username").value;
@@ -21,24 +21,35 @@ document.getElementById("signupForm").addEventListener("submit", function (event
   const confirmPassword = document.getElementById("confirmPassword").value;
   const role = document.getElementById("role").value;
 
-  // Checking if fields are filled
   if (!email || !password || !confirmPassword || !username) {
     alert('Please fill in all fields');
     return;
   }
 
-  // Checking if passwords match
   if (password !== confirmPassword) {
     alert('Passwords do not match');
     return;
   }
 
-  // Saving user data to localStorage (replace this with actual server call in production)
-  localStorage.setItem(email, JSON.stringify({ username, email, password, role }));
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, email, password, role })
+    });
 
-  alert('Signup successful! You can now log in.');
-  // Optionally, redirect to a login page
-  window.location.href = "login.html";
+    const data = await response.json();
+    if (response.ok) {
+      alert('Signup successful! You can now log in.');
+      window.location.href = "login.html";
+    } else {
+      alert(data.message);
+    }
+  } catch (error) {
+    alert('An error occurred. Please try again.');
+  }
 });
 
 function onSignIn(googleUser) {
