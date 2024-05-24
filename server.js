@@ -8,6 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Change the MongoDb connection string before starting the server
 const mongoURI = 'mongodb+srv://rahuldeka072:t0uugkxbEwBOjTWF@cluster.icddpgo.mongodb.net/?retryWrites=true&w=majority&appName=CLUSTER';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })

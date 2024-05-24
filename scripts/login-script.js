@@ -22,7 +22,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (response.ok) {
             alert('Login successful!');
             // Redirect to home.html
-            window.location.href = "home.html";
+            window.location.href = "../screens/home.html";
         } else {
             alert(data.message);
         }

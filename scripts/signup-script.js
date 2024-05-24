@@ -43,7 +43,7 @@ document.getElementById("signupForm").addEventListener("submit", async function 
     const data = await response.json();
     if (response.ok) {
       alert('Signup successful! You can now log in.');
-      window.location.href = "login.html";
+      window.location.href = "../screens/login.html";
     } else {
       alert(data.message);
     }
