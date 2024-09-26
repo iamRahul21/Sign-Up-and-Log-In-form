@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Change the MongoDb connection string before starting the server
-const mongoURI = 'mongodb+srv://rahuldeka072:t0uugkxbEwBOjTWF@cluster.icddpgo.mongodb.net/?retryWrites=true&w=majority&appName=CLUSTER';
+const mongoURI = 'mongodb+srv://rahuldeka072:uJLhMWeTNDrXArBb@movieinfo.mk9sj.mongodb.net/?retryWrites=true&w=majority&appName=MovieInfo';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
